@@ -1,0 +1,30 @@
+
+
+<h1>BUS ETA Dashboard</h1>
+
+<table>
+  <thead>
+      <tr>
+          <th>Route Number</th>
+          <th>Bus Number >> ETA</th>
+          <!-- <th>ETA</th> -->
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor='let route of signalRService.data'>   
+        <td>{{route.routeNumber}}</td>       
+        <td>
+          <ul *ngFor='let bus of route.buses'>            
+            <ul><strong>{{bus.busNumber}}</strong>  >>  {{bus.eta}} >> <strong>{{ bus.eta | date:'shortTime' }}</strong> </ul>
+            <!-- <ul>{{bus}}</ul> -->
+          </ul>    
+        </td>      
+      </tr>      
+      <tr *ngIf="!routes || routes.routes==0">
+          <td colspan="7">
+              No Routes to display
+          </td>
+      </tr>
+  </tbody>
+</table>
+
